@@ -12,12 +12,16 @@ public interface UsuarioDao extends CrudRepository<Usuario, Long> {
 
     @Query(value = "select * from usuario where email = :email", nativeQuery = true)
     Optional<Usuario> findByEmail(String email);
+
     @Query(value = "select * from usuario where email = :email or username = :username", nativeQuery = true)
     Optional<Usuario> findByUsernameOrEmail(String username, String email);
+
     @Query(value = "select * from usuario where username = :username", nativeQuery = true)
     Optional<Usuario> findByUsername(String username);
-    @Query(value = "select exists(select 1 from usuario where username = :username)", nativeQuery = true)
-    Boolean existByUsername(String username);
-    @Query(value = "select exists(select 1 from usuario where email = :email)", nativeQuery = true)
-    Boolean existByEmail(String email);
+
+    @Query(value = "select count(*) > 0 as existe from usuario where username = :username", nativeQuery = true)
+    Long existByUsername(String username);
+
+    @Query(value = "select count(*) > 0 as existe from usuario where email = :email", nativeQuery = true)
+    Long existByEmail(String email);
 }
