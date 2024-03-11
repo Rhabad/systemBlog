@@ -11,3 +11,6 @@ spring:
     hibernate:
       ddl-auto: update
 
+app:
+  jwt-secret: JWTSecretKey
+  jwt-expiration-miliseconds: 604800000

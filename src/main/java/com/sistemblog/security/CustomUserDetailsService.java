@@ -1,4 +1,4 @@
-package com.sistemblog.services.security;
+package com.sistemblog.security;
 
 
 import com.sistemblog.models.dao.UsuarioDao;
